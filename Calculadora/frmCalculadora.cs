@@ -25,12 +25,12 @@ namespace Calculadora
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
         (
-            int nLeftRect,     // x-coordinate of upper-left corner
-            int nTopRect,      // y-coordinate of upper-left corner
-            int nRightRect,    // x-coordinate of lower-right corner
-            int nBottomRect,   // y-coordinate of lower-right corner
-            int nWidthEllipse, // height of ellipse
-            int nHeightEllipse // width of ellipse
+            int nLeftRect,
+            int nTopRect,
+            int nRightRect,
+            int nBottomRect,
+            int nWidthEllipse,
+            int nHeightEllipse
         );
 
         #region Variáveis
@@ -115,20 +115,24 @@ namespace Calculadora
             if (operacao == "*" || operacao == "-" || operacao == "+")
             {
                 operacao = "/";
+                acumulado = Double.Parse(display.Text);
+                valorAcumulado.Text = valorAcumulado.Text + display.Text + operacao;
+                display.Text = String.Empty;
             }
             else
             {
                 try
                 {
+                    operacao = "/";
                     acumulado = Double.Parse(display.Text);
                     display.Text = String.Empty;
-                    operacao = "/";
                 }
                 catch
                 {
                     acumulado = 0;
                     display.Text = String.Empty;
                     operacao = "/";
+                    valorAcumulado.Text += acumulado + operacao;
                 }
             }
         }
@@ -139,6 +143,7 @@ namespace Calculadora
             {
                 operacao = "*";
                 acumulado = Double.Parse(display.Text);
+                valorAcumulado.Text = valorAcumulado.Text + display.Text + operacao;
                 display.Text = String.Empty;
             }
             else
@@ -154,6 +159,7 @@ namespace Calculadora
                     acumulado = 0;
                     display.Text = String.Empty;
                     operacao = "*";
+                    valorAcumulado.Text += acumulado + operacao;
                 }
             }
         }
@@ -163,20 +169,25 @@ namespace Calculadora
             if (operacao == "*" || operacao == "/" || operacao == "+")
             {
                 operacao = "-";
+                acumulado = Double.Parse(display.Text);
+                valorAcumulado.Text = valorAcumulado.Text + display.Text + operacao;
+                display.Text = String.Empty;
             }
             else
             {
                 try
                 {
-                    acumulado = Double.Parse(display.Text);
-                    display.Text = String.Empty;
                     operacao = "-";
+                    acumulado = Double.Parse(display.Text);
+                    valorAcumulado.Text = valorAcumulado.Text + display.Text + operacao;
+                    display.Text = String.Empty;
                 }
                 catch
                 {
                     acumulado = 0;
                     display.Text = String.Empty;
                     operacao = "-";
+                    valorAcumulado.Text += acumulado + operacao;
                 }
             }
         }
@@ -186,14 +197,17 @@ namespace Calculadora
             if (operacao == "*" || operacao == "-" || operacao == "/")
             {
                 operacao = "+";
+                acumulado = Double.Parse(display.Text);
+                valorAcumulado.Text = valorAcumulado.Text + display.Text + operacao;
+                display.Text = String.Empty;
             }
             else
             {
                 try
                 {
                     operacao = "+";
-                    acumulado += Double.Parse(display.Text);
-                    valorAcumulado.Text += display.Text + operacao;
+                    acumulado = Double.Parse(display.Text);
+                    valorAcumulado.Text = valorAcumulado.Text + display.Text + operacao;
                     display.Text = String.Empty;
                 }
                 catch
@@ -245,10 +259,11 @@ namespace Calculadora
             }
             else if (operacao == "+")
             {
-                acumulado += double.Parse(display.Text);
+                acumulado += Double.Parse(display.Text);
                 display.Text = acumulado.ToString();
                 RedefinirFonte();
             }
+            valorAcumulado.Text = string.Empty;
         }
         #endregion
 
