@@ -7,6 +7,7 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -116,7 +117,7 @@ namespace Calculadora
             {
                 operacao = "/";
                 acumulado = Double.Parse(display.Text);
-                valorAcumulado.Text = valorAcumulado.Text + display.Text + operacao;
+                valorAcumulado.Text += display.Text + operacao;
                 display.Text = String.Empty;
             }
             else
@@ -125,14 +126,15 @@ namespace Calculadora
                 {
                     operacao = "/";
                     acumulado = Double.Parse(display.Text);
+                    valorAcumulado.Text += display.Text + operacao;
                     display.Text = String.Empty;
                 }
                 catch
                 {
                     acumulado = 0;
-                    display.Text = String.Empty;
                     operacao = "/";
-                    valorAcumulado.Text += acumulado + operacao;
+                    valorAcumulado.Text += display.Text + operacao;
+                    display.Text = String.Empty;
                 }
             }
         }
@@ -143,7 +145,7 @@ namespace Calculadora
             {
                 operacao = "*";
                 acumulado = Double.Parse(display.Text);
-                valorAcumulado.Text = valorAcumulado.Text + display.Text + operacao;
+                    valorAcumulado.Text += display.Text + operacao;
                 display.Text = String.Empty;
             }
             else
@@ -151,15 +153,16 @@ namespace Calculadora
                 try
                 {
                     acumulado = Double.Parse(display.Text);
-                    display.Text = String.Empty;
                     operacao = "*";
+                    valorAcumulado.Text += display.Text + operacao;
+                    display.Text = String.Empty;
                 }
                 catch
                 {
                     acumulado = 0;
-                    display.Text = String.Empty;
                     operacao = "*";
-                    valorAcumulado.Text += acumulado + operacao;
+                    valorAcumulado.Text += display.Text + operacao;
+                    display.Text = String.Empty;
                 }
             }
         }
@@ -170,7 +173,7 @@ namespace Calculadora
             {
                 operacao = "-";
                 acumulado = Double.Parse(display.Text);
-                valorAcumulado.Text = valorAcumulado.Text + display.Text + operacao;
+                    valorAcumulado.Text += display.Text + operacao;
                 display.Text = String.Empty;
             }
             else
@@ -180,14 +183,15 @@ namespace Calculadora
                     operacao = "-";
                     acumulado = Double.Parse(display.Text);
                     valorAcumulado.Text = valorAcumulado.Text + display.Text + operacao;
+                    valorAcumulado.Text += display.Text + operacao;
                     display.Text = String.Empty;
                 }
                 catch
                 {
                     acumulado = 0;
-                    display.Text = String.Empty;
                     operacao = "-";
-                    valorAcumulado.Text += acumulado + operacao;
+                    valorAcumulado.Text += display.Text + operacao;
+                    display.Text = String.Empty;
                 }
             }
         }
@@ -198,7 +202,7 @@ namespace Calculadora
             {
                 operacao = "+";
                 acumulado = Double.Parse(display.Text);
-                valorAcumulado.Text = valorAcumulado.Text + display.Text + operacao;
+                    valorAcumulado.Text += display.Text + operacao;
                 display.Text = String.Empty;
             }
             else
@@ -207,15 +211,15 @@ namespace Calculadora
                 {
                     operacao = "+";
                     acumulado = Double.Parse(display.Text);
-                    valorAcumulado.Text = valorAcumulado.Text + display.Text + operacao;
+                    valorAcumulado.Text += display.Text + operacao;
                     display.Text = String.Empty;
                 }
                 catch
                 {
                     acumulado = 0;
-                    display.Text = String.Empty;
                     operacao = "+";
-                    valorAcumulado.Text += acumulado + operacao;
+                    valorAcumulado.Text += display.Text + operacao;
+                    display.Text = String.Empty;
                 }
             }
         }
@@ -241,7 +245,7 @@ namespace Calculadora
                 }
                 else
                 {
-                    display.Text = "Não é possível dividir por zero";
+                    display.Text = "\n\nNão é possível dividir por zero";
                     RedefinirFonte();
                 }
             }
@@ -283,10 +287,12 @@ namespace Calculadora
             if (acumulado != 0 && !String.IsNullOrEmpty(operacao))
             {
                 display.Text = String.Empty;
+                valorAcumulado.Text = String.Empty;
                 RedefinirFonte();
             }
             else
             {
+                valorAcumulado.Text = String.Empty;
                 display.Text = String.Empty;
                 RedefinirFonte();
             }
@@ -296,9 +302,13 @@ namespace Calculadora
         #region Funções Auxiliares
         private void RedefinirFonte()
         {
-            if (display.Text.Length >= 16)
+            if (display.Text.Length >= 16 && Regex.Matches(display.Text, @"[a-zA-Z]").Count == 0)
             {
                 display.Font = new Font(display.Font.FontFamily, 15);
+            }
+            else if (Regex.Matches(display.Text, @"[a-zA-Z]").Count > 1)
+            {
+                display.Font = new Font(display.Font.FontFamily, 12);
             }
             else
             {
@@ -323,7 +333,7 @@ namespace Calculadora
             {
                 try
                 {
-                    x.FlatAppearance.BorderColor = Color.FromArgb(31,31,31);
+                    x.FlatAppearance.BorderColor = Color.FromArgb(31, 31, 31);
                     x.FlatAppearance.BorderSize = 1;
                 }
                 catch (Exception ex)
@@ -333,5 +343,26 @@ namespace Calculadora
             }
         }
         #endregion
+
+        private void CsBtnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void CsBtnMaximize_Click(object sender, EventArgs e)
+        {
+            // Não funciona por enquanto
+        }
+
+        private void CsBtnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void CsBtnAbout_Click(object sender, EventArgs e)
+        {
+            frmSobre frmSobre = new frmSobre();
+            frmSobre.ShowDialog();
+        }
     }
 }

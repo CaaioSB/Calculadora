@@ -49,9 +49,10 @@
             this.csButton3 = new Calculadora.CSButton();
             this.csButton2 = new Calculadora.CSButton();
             this.csBtnDivisao = new Calculadora.CSButton();
-            this.roundButton3 = new Calculadora.RoundButton();
-            this.roundButton2 = new Calculadora.RoundButton();
-            this.roundButton1 = new Calculadora.RoundButton();
+            this.csBtnClose = new Calculadora.CSButton();
+            this.csBtnMaximize = new Calculadora.CSButton();
+            this.csBtnMinimize = new Calculadora.CSButton();
+            this.csBtnAbout = new Calculadora.CSButton();
             this.SuspendLayout();
             // 
             // btnZero
@@ -258,12 +259,12 @@
             this.display.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.display.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.display.ForeColor = System.Drawing.Color.White;
-            this.display.Location = new System.Drawing.Point(2, 45);
+            this.display.Location = new System.Drawing.Point(2, 58);
             this.display.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.display.Multiline = true;
             this.display.Name = "display";
             this.display.ReadOnly = true;
-            this.display.Size = new System.Drawing.Size(273, 69);
+            this.display.Size = new System.Drawing.Size(273, 57);
             this.display.TabIndex = 20;
             this.display.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -351,51 +352,65 @@
             this.csBtnDivisao.UseVisualStyleBackColor = true;
             this.csBtnDivisao.Click += new System.EventHandler(this.BtnDivisao_Click);
             // 
-            // roundButton3
+            // csBtnClose
             // 
-            this.roundButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.roundButton3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.roundButton3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.roundButton3.FlatAppearance.BorderSize = 0;
-            this.roundButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.roundButton3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(95)))), ((int)(((byte)(85)))));
-            this.roundButton3.Image = global::Calculadora.Properties.Resources.minimize_button;
-            this.roundButton3.Location = new System.Drawing.Point(49, 0);
-            this.roundButton3.Name = "roundButton3";
-            this.roundButton3.Size = new System.Drawing.Size(25, 25);
-            this.roundButton3.TabIndex = 31;
-            this.roundButton3.TabStop = false;
-            this.roundButton3.UseVisualStyleBackColor = false;
+            this.csBtnClose.BackgroundImage = global::Calculadora.Properties.Resources.close_button;
+            this.csBtnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.csBtnClose.CSBackColorChange = "Laranja";
+            this.csBtnClose.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.csBtnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.csBtnClose.Font = new System.Drawing.Font("Century Gothic", 18F);
+            this.csBtnClose.Location = new System.Drawing.Point(1, 2);
+            this.csBtnClose.Name = "csBtnClose";
+            this.csBtnClose.Size = new System.Drawing.Size(25, 25);
+            this.csBtnClose.TabIndex = 36;
+            this.csBtnClose.UseVisualStyleBackColor = true;
+            this.csBtnClose.Click += new System.EventHandler(this.CsBtnClose_Click);
             // 
-            // roundButton2
+            // csBtnMaximize
             // 
-            this.roundButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.roundButton2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.roundButton2.FlatAppearance.BorderSize = 0;
-            this.roundButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.roundButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(95)))), ((int)(((byte)(85)))));
-            this.roundButton2.Image = global::Calculadora.Properties.Resources.maximize_button;
-            this.roundButton2.Location = new System.Drawing.Point(25, 0);
-            this.roundButton2.Name = "roundButton2";
-            this.roundButton2.Size = new System.Drawing.Size(25, 25);
-            this.roundButton2.TabIndex = 30;
-            this.roundButton2.TabStop = false;
-            this.roundButton2.UseVisualStyleBackColor = false;
+            this.csBtnMaximize.BackgroundImage = global::Calculadora.Properties.Resources.maximize_button;
+            this.csBtnMaximize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.csBtnMaximize.CSBackColorChange = "Laranja";
+            this.csBtnMaximize.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.csBtnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.csBtnMaximize.Font = new System.Drawing.Font("Century Gothic", 18F);
+            this.csBtnMaximize.Location = new System.Drawing.Point(27, 2);
+            this.csBtnMaximize.Name = "csBtnMaximize";
+            this.csBtnMaximize.Size = new System.Drawing.Size(25, 25);
+            this.csBtnMaximize.TabIndex = 35;
+            this.csBtnMaximize.UseVisualStyleBackColor = true;
+            this.csBtnMaximize.Click += new System.EventHandler(this.CsBtnMaximize_Click);
             // 
-            // roundButton1
+            // csBtnMinimize
             // 
-            this.roundButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.roundButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.roundButton1.FlatAppearance.BorderSize = 0;
-            this.roundButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.roundButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(95)))), ((int)(((byte)(85)))));
-            this.roundButton1.Image = global::Calculadora.Properties.Resources.close_button;
-            this.roundButton1.Location = new System.Drawing.Point(2, 0);
-            this.roundButton1.Name = "roundButton1";
-            this.roundButton1.Size = new System.Drawing.Size(25, 25);
-            this.roundButton1.TabIndex = 29;
-            this.roundButton1.TabStop = false;
-            this.roundButton1.UseVisualStyleBackColor = false;
+            this.csBtnMinimize.BackgroundImage = global::Calculadora.Properties.Resources.minimize_button;
+            this.csBtnMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.csBtnMinimize.CSBackColorChange = "Laranja";
+            this.csBtnMinimize.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.csBtnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.csBtnMinimize.Font = new System.Drawing.Font("Century Gothic", 18F);
+            this.csBtnMinimize.Location = new System.Drawing.Point(53, 2);
+            this.csBtnMinimize.Name = "csBtnMinimize";
+            this.csBtnMinimize.Size = new System.Drawing.Size(25, 25);
+            this.csBtnMinimize.TabIndex = 34;
+            this.csBtnMinimize.UseVisualStyleBackColor = true;
+            this.csBtnMinimize.Click += new System.EventHandler(this.CsBtnMinimize_Click);
+            // 
+            // csBtnAbout
+            // 
+            this.csBtnAbout.BackgroundImage = global::Calculadora.Properties.Resources.about_button;
+            this.csBtnAbout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.csBtnAbout.CSBackColorChange = "Laranja";
+            this.csBtnAbout.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.csBtnAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.csBtnAbout.Font = new System.Drawing.Font("Century Gothic", 18F);
+            this.csBtnAbout.Location = new System.Drawing.Point(79, 2);
+            this.csBtnAbout.Name = "csBtnAbout";
+            this.csBtnAbout.Size = new System.Drawing.Size(25, 25);
+            this.csBtnAbout.TabIndex = 33;
+            this.csBtnAbout.UseVisualStyleBackColor = true;
+            this.csBtnAbout.Click += new System.EventHandler(this.CsBtnAbout_Click);
             // 
             // frmCalculadora
             // 
@@ -403,9 +418,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
             this.ClientSize = new System.Drawing.Size(275, 468);
-            this.Controls.Add(this.roundButton3);
-            this.Controls.Add(this.roundButton2);
-            this.Controls.Add(this.roundButton1);
+            this.Controls.Add(this.csBtnClose);
+            this.Controls.Add(this.csBtnMaximize);
+            this.Controls.Add(this.csBtnMinimize);
+            this.Controls.Add(this.csBtnAbout);
             this.Controls.Add(this.csButton5);
             this.Controls.Add(this.csButton4);
             this.Controls.Add(this.csButton3);
@@ -461,9 +477,10 @@
         private CSButton csButton3;
         private CSButton csButton4;
         private CSButton csButton5;
-        private RoundButton roundButton1;
-        private RoundButton roundButton2;
-        private RoundButton roundButton3;
+        private CSButton csBtnAbout;
+        private CSButton csBtnMinimize;
+        private CSButton csBtnMaximize;
+        private CSButton csBtnClose;
     }
 }
 
